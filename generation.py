@@ -16,6 +16,9 @@ def indextts_audio_generation(
   if not os.path.exists(output_audio_dir):
       os.makedirs(output_audio_dir, exist_ok=True)
 
+# uv run run_tts.py --target_text "This is my daily makeup routine. First, I start with cleanser." \
+# --audio_ref "temp/ref.mp3" --output_dir "generated_audio" --audio_name "gen1.wav"
+
   result = subprocess.run(
       [
           "uv",
@@ -71,7 +74,7 @@ def infinitedtalk_video_generation(generated_audio_path: str, prompt: str, image
   
 def main():
     text = "This is my daily makeup routine. First, I start with cleanser."
-    audio_ref = "temp/ref.wav"
+    audio_ref = "temp/ref.mp3"
     output_audio_dir = "generated_audio"
     generated_audio_name = f"gen_{uuid.uuid4().hex}.wav"
   

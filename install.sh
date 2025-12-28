@@ -1,5 +1,8 @@
 # !/bin/sh
 
+# all installation takes about 30 minutes
+# 274gb disk space needed
+
 # installing index-tts
 
 # check if uv is installed
@@ -14,6 +17,7 @@ fi
 
 cd index-tts
 uv sync --all-extras
+uv pip install librosa
 uv tool install "huggingface-hub[cli,hf_xet]"
 hf download IndexTeam/IndexTTS-2 --local-dir=checkpoints
 
