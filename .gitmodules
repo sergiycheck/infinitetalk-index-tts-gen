@@ -1,0 +1,6 @@
+[submodule "index-tts"]
+	path = index-tts
+	url = https://github.com/index-tts/index-tts.git
+[submodule "InfiniteTalk"]
+	path = InfiniteTalk
+	url = https://github.com/MeiGen-AI/InfiniteTalk.git
