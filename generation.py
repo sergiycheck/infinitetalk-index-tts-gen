@@ -3,11 +3,13 @@ import uuid
 import os
 import json
 
-def indextts_audio_generation():
-  audio_ref = "temp/ref.wav"
-  output_audio_dir = "generated_audio"
-  generated_audio_name = f"gen_{uuid.uuid4().hex}.wav"
-  
+def indextts_audio_generation(
+    text: str,
+    audio_ref: str,
+    output_audio_dir: str,
+    generated_audio_name: str
+):
+
   if not os.path.exists(audio_ref):
       raise FileNotFoundError(f"Reference audio not found: {audio_ref}")
   
@@ -19,7 +21,7 @@ def indextts_audio_generation():
           "uv",
           "run",
           "index-tts/run_tts.py",
-          "--target_text", "This is my daily makeup routine. First, I start with cleanser.",
+          "--target_text", text,
           "--audio_ref", audio_ref,
           "--output_dir", output_audio_dir,
           "--audio_name", generated_audio_name,
@@ -68,8 +70,19 @@ def infinitedtalk_video_generation(generated_audio_path: str, prompt: str, image
   
   
 def main():
-    generated_audio_path = indextts_audio_generation()
-    prompt = "A person is talking about their daily makeup routine."
+    text = "This is my daily makeup routine. First, I start with cleanser."
+    audio_ref = "temp/ref.wav"
+    output_audio_dir = "generated_audio"
+    generated_audio_name = f"gen_{uuid.uuid4().hex}.wav"
+  
+    generated_audio_path = indextts_audio_generation(
+        text,
+        audio_ref,
+        output_audio_dir,
+        generated_audio_name
+    )
+    
+    prompt = "A girl is talking directly to the camera"
     image_path = "temp/cond_image.jpg"
     infinitedtalk_video_generation(generated_audio_path, prompt, image_path)
 
