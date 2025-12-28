@@ -19,7 +19,7 @@ cd index-tts
 uv sync --all-extras
 uv pip install librosa
 uv tool install "huggingface-hub[cli,hf_xet]"
-hf download IndexTeam/IndexTTS-2 --local-dir=checkpoints
+uv run hf download IndexTeam/IndexTTS-2 --local-dir=checkpoints
 
 cd ..
 
