@@ -22,7 +22,7 @@ uv tool install "huggingface-hub[cli,hf_xet]"
 uv run hf download IndexTeam/IndexTTS-2 --local-dir=checkpoints
 
 # api deps
-uv pip install "fastapi[standard]" uvicorn boto3 pydantic
+uv add uvicorn fastapi boto3 pydantic dotenv
 
 cd ..
 
@@ -49,7 +49,7 @@ pip install -r requirements.txt
 pip install librosa
 
 # api deps
-uv pip install "fastapi[standard]" uvicorn boto3 pydantic
+uv add uvicorn fastapi boto3 pydantic dotenv
 
 # ffmpeg installation
 apt install ffmpeg ffmpeg-devel
