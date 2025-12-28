@@ -21,6 +21,9 @@ uv pip install librosa
 uv tool install "huggingface-hub[cli,hf_xet]"
 uv run hf download IndexTeam/IndexTTS-2 --local-dir=checkpoints
 
+# api deps
+uv pip install "fastapi[standard]" uvicorn boto3 pydantic
+
 cd ..
 
 # installing infinite-talk
@@ -44,6 +47,9 @@ pip install flash_attn==2.7.4.post1
 # other deps
 pip install -r requirements.txt
 pip install librosa
+
+# api deps
+uv pip install "fastapi[standard]" uvicorn boto3 pydantic
 
 # ffmpeg installation
 apt install ffmpeg ffmpeg-devel
