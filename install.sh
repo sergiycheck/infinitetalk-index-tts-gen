@@ -49,16 +49,16 @@ pip install -r requirements.txt
 pip install librosa
 
 # api deps
-uv add uvicorn fastapi boto3 pydantic dotenv
+pip install uvicorn fastapi boto3 pydantic dotenv "huggingface_hub"
 
 # ffmpeg installation
 apt install ffmpeg ffmpeg-devel
 
 # models download
-huggingface-cli download Wan-AI/Wan2.1-I2V-14B-480P --local-dir ./weights/Wan2.1-I2V-14B-480P
-huggingface-cli download TencentGameMate/chinese-wav2vec2-base --local-dir ./weights/chinese-wav2vec2-base
-huggingface-cli download TencentGameMate/chinese-wav2vec2-base model.safetensors --revision refs/pr/1 --local-dir ./weights/chinese-wav2vec2-base
-huggingface-cli download MeiGen-AI/InfiniteTalk --local-dir ./weights/InfiniteTalk
+hf download Wan-AI/Wan2.1-I2V-14B-480P --local-dir ./weights/Wan2.1-I2V-14B-480P
+hf download TencentGameMate/chinese-wav2vec2-base --local-dir ./weights/chinese-wav2vec2-base
+hf download TencentGameMate/chinese-wav2vec2-base model.safetensors --revision refs/pr/1 --local-dir ./weights/chinese-wav2vec2-base
+hf download MeiGen-AI/InfiniteTalk --local-dir ./weights/InfiniteTalk
 
 cd ..
 
