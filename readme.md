@@ -3,7 +3,7 @@
 Command to start api
 
 ```bash
-uv run uvicorn api:app --host 0.0.0.0 --port 8001
+uv run uvicorn api:app --host 0.0.0.0 --port 8011
 ```
 
 ### infinite talk api
@@ -11,5 +11,5 @@ uv run uvicorn api:app --host 0.0.0.0 --port 8001
 Command to start api
 
 ```bash
-uv run uvicorn api:app --host 0.0.0.0 --port 8002
+uv run uvicorn api:app --host 0.0.0.0 --port 8012
 ```
