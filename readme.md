@@ -1,9 +1,15 @@
 ### index tts api
 
-Command to start api
+Command to start api index tts
 
 ```bash
 uv run uvicorn api:app --host 0.0.0.0 --port 8011
+```
+
+Command to start api infinitetalk
+
+```bash
+uvicorn api:app --host 0.0.0.0 --port 8012
 ```
 
 ### Test index tts api
