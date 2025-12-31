@@ -14,7 +14,6 @@ from utils import now_local_str
 
 MAX_CONCURRENT_JOBS = 1
 job_semaphore = mp.Semaphore(MAX_CONCURRENT_JOBS)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 app = FastAPI()
 active_connections: Dict[str, WebSocket] = {}
 queues: Dict[str, mp.Queue] = {}

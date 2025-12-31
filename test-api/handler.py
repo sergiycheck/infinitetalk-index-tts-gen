@@ -4,6 +4,8 @@ import time
 from boto3_utils import download_s3_file, upload_s3_file
 from utils import now_local_str
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 def tts_worker(audio_ref_s3_key: str, text_prompt: str):
     try:
         bucket_name = os.getenv("S3_BUCKET_NAME")
@@ -11,7 +13,7 @@ def tts_worker(audio_ref_s3_key: str, text_prompt: str):
         if not bucket_name:
             raise RuntimeError("S3_BUCKET_NAME environment variable is not set")
         
-        output_dir = os.path.join("output")
+        output_dir = os.path.join(BASE_DIR, "output")
         os.makedirs(output_dir, exist_ok=True)
     
         print("Downloading reference audio from S3...", now_local_str())

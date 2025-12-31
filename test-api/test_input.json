@@ -1,0 +1,6 @@
+{
+  "input": {
+    "text_prompt": "Hi, you're so cute, I like your outfit and smell, considering my mood I'm ready for something cool",
+    "audio_ref_s3_key": "ref.mp3"
+  }
+}
