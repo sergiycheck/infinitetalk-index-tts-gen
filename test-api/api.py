@@ -10,6 +10,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from pydantic import BaseModel
 from typing import Dict
 from handler import tts_worker
+from utils import now_local_str
 
 MAX_CONCURRENT_JOBS = 1
 job_semaphore = mp.Semaphore(MAX_CONCURRENT_JOBS)
@@ -21,7 +22,28 @@ queues: Dict[str, mp.Queue] = {}
 class AudioRequest(BaseModel):
     text_prompt: str
     audio_ref_s3_key: str
+
+def tts_worker_wrapper(request: dict, queue: mp.Queue, job_semaphore: mp.Semaphore):
+  try:      
+    queue.put({"status": "starting generation"})
+    print("Starting generation", now_local_str())
+  
+    result = tts_worker(
+        audio_ref_s3_key=request["audio_ref_s3_key"],
+        text_prompt=request["text_prompt"]
+    )
     
+    queue.put(result)
+    
+  except Exception as e:
+    print(f"Error in tts_worker_wrapper: {e}")
+    queue.put({
+        "status": "error",
+        "error": str(e)
+    })
+
+  finally:
+    job_semaphore.release()
 
 async def ws_event_forwarder(job_id: str, queues: mp.Queue):
     try:
@@ -50,8 +72,8 @@ async def generate_audio(request: AudioRequest):
         queues[job_id] = queue
 
         process = mp.Process(
-            target=tts_worker,
-            args=(job_id, request.dict(), queue, BASE_DIR, job_semaphore)
+            target=tts_worker_wrapper,
+            args=(request.dict(), queue, job_semaphore)
         )
         process.start()
         asyncio.create_task(ws_event_forwarder(job_id, queues))
