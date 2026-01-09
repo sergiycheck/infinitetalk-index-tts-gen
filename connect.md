@@ -1,3 +1,3 @@
 ```bash
-ssh root@64.247.206.120 -p 13734  -i ~/.ssh/runpods/id_rsa
+ssh root@213.181.111.2 -p 40575 -i ~/.ssh/runpods/id_rsa
 ```
